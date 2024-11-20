@@ -8,6 +8,8 @@ set(CMAKE_VERBOSE_MAKEFILE true)
 set(SRC 
     ${PROJECT_SOURCE_DIR}/src/main.cpp
     ${PROJECT_SOURCE_DIR}/src/window.cpp
+    ${PROJECT_SOURCE_DIR}/src/vertex.cpp
+    ${PROJECT_SOURCE_DIR}/src/shader.cpp
     ${PROJECT_SOURCE_DIR}/dependency/glad/src/glad.c
 )
 
