@@ -49,8 +49,33 @@ bool gl::shader::compile_shaders(std::string& vertex_shader_path, std::string& f
         glGetShaderiv(vertex_shader_,GL_COMPILE_STATUS,&success);
         if(!success) return false;
 
-        return true;
+        fragment_shader_ = glCreateShader(GL_FRAGMENT_SHADER);
+        const char* fs_src = fragment_shader_source_.c_str();
+        glShaderSource(fragment_shader_,1,&fs_src,NULL);
+        glCompileShader(fragment_shader_);
+        //check compilation result
+        glGetShaderiv(fragment_shader_,GL_COMPILE_STATUS,&success);
+        if(!success) return false;
 
+        return true;
     }
     return false;
+}
+
+bool gl::shader::use_shaders(){
+    shader_program_ = glCreateProgram();
+    glAttachShader(shader_program_,vertex_shader_);
+    glAttachShader(shader_program_,fragment_shader_);
+    glLinkProgram(shader_program_);
+
+    int success=0;
+    glGetProgramiv(shader_program_,GL_LINK_STATUS, &success);
+    if(!success) return false;
+
+    glUseProgram(shader_program_);
+    //delete shaders
+    glDeleteShader(vertex_shader_);
+    glDeleteShader(fragment_shader_);
+
+    return true;
 }

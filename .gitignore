@@ -32,5 +32,5 @@
 *.app
 
 #build
-./build/
-./dependency/slfw-3.4/build/
+./build/*
+./dependency/slfw-3.4/build/*

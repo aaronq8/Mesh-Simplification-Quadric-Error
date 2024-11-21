@@ -8,7 +8,7 @@ namespace gl{
     class vertex{
         public:
             float vertices_[3*3];
-            unsigned int vbo_;
+            unsigned int vbo_,vao_;
             void load_vertex_in_vbo();
             vertex();
     };

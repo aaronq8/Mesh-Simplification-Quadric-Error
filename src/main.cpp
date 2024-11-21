@@ -13,20 +13,23 @@ int main(int argc,char** argv){
         //compile shaders
         gl::shader shader_l;
         std::string vs_source{"./shaders/vertexShader.glsl"},fs_source{"./shaders/fragmentShader.glsl"};
-        std::cout<<"compile result : "<<shader_l.compile_shaders(vs_source,fs_source)<<"\n";
-
-        //render loop 1 iteration = 1 frame
-        while(!glfwWindowShouldClose(glfw_window.window_)){
-            //input
-            glfw_window.process_input();
-            //render scene to back buffer
-            glClearColor(0.0f,1.0f,0.0f,1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
-            
-            //swap buffers
-            glfwSwapBuffers(glfw_window.window_);
-            glfwPollEvents();
+        if(shader_l.compile_shaders(vs_source,fs_source) && shader_l.use_shaders()){
+            std::cout<<"successfully initialized shaders!!\n";
+            glBindVertexArray(vertex_data.vao_);
+            //render loop 1 iteration = 1 frame
+            while(!glfwWindowShouldClose(glfw_window.window_)){
+                //input
+                glfw_window.process_input();
+                //render scene to back buffer
+                glDrawArrays(GL_TRIANGLES,0,3);//0th vertex , 3 count
+                
+                //swap buffers
+                glfwSwapBuffers(glfw_window.window_);
+                glfwPollEvents();
+            }
         }
+
+        
 
         //terminate
         glfwTerminate();
