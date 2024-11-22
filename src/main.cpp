@@ -20,9 +20,10 @@ int main(int argc,char** argv){
             while(!glfwWindowShouldClose(glfw_window.window_)){
                 //input
                 glfw_window.process_input();
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 //render scene to back buffer
-                glDrawArrays(GL_TRIANGLES,0,3);//0th vertex , 3 count
-                
+                //glDrawArrays(GL_TRIANGLES,0,4);//0th vertex , 3 count
+                glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
                 //swap buffers
                 glfwSwapBuffers(glfw_window.window_);
                 glfwPollEvents();
