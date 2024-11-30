@@ -22,13 +22,8 @@ int main(int argc,char** argv){
                 glfw_window.process_input();
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 //render scene to back buffer
-                float time = glfwGetTime();
-                float green = 1.0f;
-                int vertex_color_location = glGetUniformLocation(shader_l.get_shader_program(),"vertex_color");
-                //current shader program already set
-                glUniform4f(vertex_color_location,0.0f,green,0.0f,0.0f);
-                //glDrawArrays(GL_TRIANGLES,0,4);//0th vertex , 3 count
-                glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
+                glDrawArrays(GL_TRIANGLES,0,3);//0th vertex , 3 count
+                //glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
                 //swap buffers
                 glfwSwapBuffers(glfw_window.window_);
                 glfwPollEvents();
