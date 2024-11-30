@@ -79,3 +79,7 @@ bool gl::shader::use_shaders(){
 
     return true;
 }
+
+unsigned int gl::shader::get_shader_program(){
+    return shader_program_;
+}

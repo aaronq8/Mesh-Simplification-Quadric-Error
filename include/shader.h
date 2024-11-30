@@ -9,6 +9,7 @@ namespace gl{
         public:
             bool compile_shaders(std::string&, std::string&);
             bool use_shaders();//sets current program
+            unsigned int get_shader_program();
         private:
             std::string read_file(std::string&);
             bool load_vertex_shader(std::string&);
